@@ -13,7 +13,8 @@ export const authApi = {
      * Le backend renverra les cookies accessToken et refreshToken automatiquement
      */
     login: async (data: AuthenticationRequest): Promise<AuthenticationResponse> => {
-        const response = await apiClient.post<AuthenticationResponse>('/auth/login', data);
+        // RETRAIT DU SLASH INITIAL POUR RESPECTER LE BASE_URL (/api)
+        const response = await apiClient.post<AuthenticationResponse>('auth/login', data);
         return response.data;
     },
 
@@ -21,7 +22,7 @@ export const authApi = {
      * Inscrit un nouvel utilisateur (Admin ou Caissier)
      */
     register: async (data: RegisterRequest): Promise<AuthenticationResponse> => {
-        const response = await apiClient.post<AuthenticationResponse>('/auth/register', data);
+        const response = await apiClient.post<AuthenticationResponse>('auth/register', data);
         return response.data;
     },
 
@@ -29,7 +30,7 @@ export const authApi = {
      * Rafraîchit le token d'accès
      */
     refreshToken: async (data: TokenRefreshRequest): Promise<AuthenticationResponse> => {
-        const response = await apiClient.post<AuthenticationResponse>('/auth/refresh', data);
+        const response = await apiClient.post<AuthenticationResponse>('auth/refresh', data);
         return response.data;
     },
 
@@ -37,7 +38,6 @@ export const authApi = {
      * Déconnecte l'utilisateur en demandant au backend de supprimer les cookies
      */
     logout: async (): Promise<void> => {
-        // Nous avons créé la route /logout dans l'étape précédente du contrôleur Spring Boot
-        await apiClient.post('/auth/logout');
+        await apiClient.post('auth/logout');
     }
 };
