@@ -2,7 +2,8 @@
 import axios from 'axios';
 
 const apiClient = axios.create({
-    baseURL: 'https://gestionflotte-back.onrender.com',
+    // AJOUT DE /api DIRECTEMENT DANS LA BASE URL POUR TOUTES LES REQUÊTES
+    baseURL: 'https://gestionflotte-back.onrender.com/api',
     withCredentials: true, // C'est cette ligne qui fait que le navigateur gère les cookies automatiquement
     headers: {
         'Content-Type': 'application/json',
